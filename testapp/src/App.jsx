@@ -5,10 +5,12 @@ import './App.css';
 function App() {
   const [tab, setTab] = useState('font-size');
   const fontSizes = [
+    ['text-xs', 'text-vw-xxs'],
     ['text-xs', 'text-vw-xs'],
     ['text-sm', 'text-vw-sm'],
     ['text-base', 'text-vw-base'],
     ['text-lg', 'text-vw-lg'],
+    ['text-xl', 'text-vw-xl'],
     ['text-2xl', 'text-vw-2xl'],
     ['text-3xl', 'text-vw-3xl'],
     ['text-4xl', 'text-vw-4xl'],
@@ -51,13 +53,14 @@ function App() {
     ['w-96', 'h-96', 'w-vw-96', 'h-vw-96'],
   ]
   const borderRaduises = [
-    ['roundedsm', 'rounded-vw-sm'],
+    ['rounded-sm', 'rounded-vw-sm'],
     ['rounded', 'rounded-vw'],
     ['rounded-md', 'rounded-vw-md'],
     ['rounded-lg', 'rounded-vw-lg'],
     ['rounded-xl', 'rounded-vw-xl'],
     ['rounded-2xl', 'rounded-vw-2xl'],
-    ['rounded-3xl', 'rounded-vw-3xl']
+    ['rounded-3xl', 'rounded-vw-3xl'],
+    ['rounded-4xl', 'rounded-vw-4xl']
   ]
 
   return (
@@ -71,7 +74,7 @@ function App() {
       {tab === 'font-size' && (
         <div>
           {fontSizes.map(([size, vwSize], idx) => (
-            <div key={idx} className="flex flex-col mt-4">
+            <div key={idx} className="flex flex-col mt-4 font-mono whitespace-nowrap">
               <p className={size}>Normal spacing</p>
               <p className={`${vwSize} mt-2`}>Fluid spacing!</p>
             </div>

@@ -1,11 +1,10 @@
-const getPixelValue = require('../utils/getPixelValue');
+const getScreens = require('../utils/getScreens');
 const spacingsMap = require('../utils/nameToPropertiesMaps').spacingsMap;
 
 
 module.exports = (theme, options) => {
   const classes = {};
-  const minScreen = getPixelValue(theme(`screens.${options.screenMin}`) || options.screenMin) || 640;
-  const maxScreen = getPixelValue(theme(`screens.${options.screenMax}`) || options.screenMax) || 1536;
+  const { minScreen, maxScreen } = getScreens(theme, options);
   const negatives = [
     'm', 'my', 'mx', 'mt', 'ml', 'mr', 'mb',
     'inset', 'inset-y', 'inset-x', 'top', 'left', 'right', 'bottom',
@@ -16,7 +15,7 @@ module.exports = (theme, options) => {
     let pre = negative ? '-' : '';
     let val = typeof conf === 'object'
       ? clamp ? `clamp(${pre}${conf.clampMin}, ${pre}${conf.vw}, ${pre}${conf.clampMax})` : `${pre}${conf.vw}`
-      : conf;
+      : `${pre}${conf}`;
 
     return Object.fromEntries(
       properties.map(property => {
@@ -39,29 +38,34 @@ module.exports = (theme, options) => {
     for (let [sizeName, conf] of Object.entries(theme('fluid.spacing'))) {
       let className = `.${cls}-vw-${sizeName}`;
 
-      if (options.useClamp) {
-        classes[className] = getProperties(conf, properties, true, false)
+      classes[className] = getProperties(conf, properties, options.useClamp, false)
 
-        if (cls in negatives) {
-          classes[`.-${className.substring(1)}`] = getProperties(conf, properties, true, true)
-        }
-      } else {
-        classes[className] = getProperties(conf, properties, false, false)
-
-        if (cls in negatives) {
-          classes[`.-${className.substring(1)}`] = getProperties(conf, properties, false, true)
-        }
+      if (cls in negatives) {
+        classes[`.-${className.substring(1)}`] = getProperties(conf, properties, options.useClamp, true)
       }
 
+      // TODO: These media should be out of for loop, because for each of the classes, new media is added...
       if (['min', true].includes(options.useMediaReset)) {
         classes[className][`@media (max-width: ${minScreen - 0.01}px)`] = getProperties(
           theme(`spacing.${sizeName}`), properties, false, false
         )
+
+        if (cls in negatives) {
+          classes[`.-${className.substring(1)}`][`@media (max-width: ${minScreen - 0.01}px)`] = getProperties(
+            theme(`spacing.${sizeName}`), properties, false, true
+          )
+        }
       }
       if (['max', true].includes(options.useMediaReset)) {
         classes[className][`@media (min-width: ${maxScreen}px)`] = getProperties(
           theme(`spacing.${sizeName}`), properties, false, false
         )
+
+        if (cls in negatives) {
+          classes[`.-${className.substring(1)}`][`@media (min-width: ${maxScreen}px)`] = getProperties(
+            theme(`spacing.${sizeName}`), properties, false, true
+          )
+        }
       }
     }
   }

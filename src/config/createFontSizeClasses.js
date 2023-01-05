@@ -1,39 +1,33 @@
-const getPixelValue = require("../utils/getPixelValue");
+const getScreens = require("../utils/getScreens");
 
 
 module.exports = (theme, options) => {
   const classes = {};
-  const minScreen = getPixelValue(theme(`screens.${options.screenMin}`) || options.screenMin) || 640;
-  const maxScreen = getPixelValue(theme(`screens.${options.screenMax}`) || options.screenMax) || 1536;
+  const { minScreen, maxScreen } = getScreens(theme, options);
 
-  const getDefaultValue = (sizeName) => {
-    let defaultSize = theme(`fontSize.${sizeName}`);
-    return Array.isArray(defaultSize) ? defaultSize[0] : defaultSize;
+  const getProperties = (conf, clamp) => {
+    return {
+      'font-size': clamp ? `clamp(${conf.clampMin}, ${conf.vw}, ${conf.clampMax})` : conf.vw,
+      'line-height': conf.lineHeight
+    }
   }
 
   for (let [sizeName, conf] of Object.entries(theme('fluid.fontSize'))) {
     let className = `.text-vw-${sizeName}`;
 
-    if (options.useClamp) {
-      classes[className] = {
-        'font-size': `clamp(${conf.clampMin}, ${conf.vw}, ${conf.clampMax})`,
-      }
-    } else {
-      classes[className] = {
-        'font-size': conf.vw
-      }
-    }
+    classes[className] = getProperties(conf, options.useClamp)
 
-    classes[className]['line-height'] = conf.lineHeight;
-
+    // TODO: Find a way to compose these media classes into one.
     if (['min', true].includes(options.useMediaReset)) {
+      // TODO: line-height is not resetting, I don't know how to retrieve it. See theme('fontSize')
       classes[className][`@media (max-width: ${minScreen - 0.01}px)`] = {
-        'font-size': getDefaultValue(sizeName)
+        'font-size': theme(`fontSize.${sizeName}`)
       }
     }
     if (['max', true].includes(options.useMediaReset)) {
+      // TODO: line-height is not resetting, I don't know how to retrieve it. See theme('fontSize')
       classes[className][`@media (min-width: ${maxScreen}px)`] = {
-        'font-size': getDefaultValue(sizeName)
+        'font-size': theme(`fontSize.${sizeName}`)
       }
     }
   }

@@ -1,4 +1,8 @@
 module.exports = (rawValue, base=16) => {
+  if (Array.isArray(rawValue)) {
+    rawValue = rawValue[0];
+  }
+
   const val = parseFloat(rawValue);
 
   if (!val) return null;

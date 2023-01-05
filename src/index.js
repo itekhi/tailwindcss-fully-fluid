@@ -9,8 +9,9 @@ const createBorderRadiusClasses = require('./config/createBorderRadiusClasses');
 const defaultOptions = {
   screenMin: 'sm',
   screenMax: '2xl',
-  useMediaReset: 'min', // 'min' | 'max' | true | false
   useClamp: true, // true | false
+  useMediaReset: 'min', // 'min' | 'max' | true | false
+  extraSizes: {}
 }
 
 
@@ -22,8 +23,8 @@ module.exports = plugin.withOptions(
     // TODO: add options check
 
     return function ({ addUtilities, theme }) {
-      addUtilities(createFontSizeClasses(theme, options));
       addUtilities(createSpacingClasses(theme, options));
+      addUtilities(createFontSizeClasses(theme, options));
       addUtilities(createBorderRadiusClasses(theme, options));
     }
   },
@@ -34,8 +35,8 @@ module.exports = plugin.withOptions(
     return {
       theme: {
         fluid: ({ theme }) => ({
-          fontSize: getThemeConfig('fontSize', theme, options),
           spacing: getThemeConfig('spacing', theme, options),
+          fontSize: getThemeConfig('fontSize', theme, options),
           borderRadius: getThemeConfig('borderRadius', theme, options)
         })
       }

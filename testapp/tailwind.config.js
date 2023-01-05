@@ -5,14 +5,33 @@ module.exports = {
   ],
   theme: {
     extend: {
-      spacing: {
-        '112': '24rem'
+      fluid: {
+        fontSize: {
+          xxs: {
+            clampMin: '5px',
+            clampMax: '15px',
+            vw: '0.78125vw'
+          },
+          xs: {
+            lineHeight: 1
+          }
+        }
       }
     },
   },
   plugins: [
     require('../src')({
-      useMediaReset: false
+      screenMax: '1920px',
+      useMediaReset: true,
+      // extraSizes: {
+      //   spacing: [112],
+      //   fontSize: {
+      //     'xxs': -3
+      //   },
+      //   borderRadius: {
+      //     '4xl': 6
+      //   }
+      // }
     })
   ],
 }
