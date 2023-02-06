@@ -57,23 +57,23 @@ module.exports = (theme, options) => {
       // TODO: These media should be out of for loop, because for each of the classes, new media is added...
       if (['min', true].includes(options.useMediaReset)) {
         classes[className][`@media (max-width: ${minScreen - 0.01}px)`] = getProperties(
-          theme(`spacing.${sizeName}`), properties, false, false
+          theme(`spacing.${sizeName}`), cls, properties, false, false
         )
 
         if (cls in negatives) {
           classes[`.-${className.substring(1)}`][`@media (max-width: ${minScreen - 0.01}px)`] = getProperties(
-            theme(`spacing.${sizeName}`), properties, false, true
+            theme(`spacing.${sizeName}`), cls, properties, false, true
           )
         }
       }
       if (['max', true].includes(options.useMediaReset)) {
         classes[className][`@media (min-width: ${maxScreen}px)`] = getProperties(
-          theme(`spacing.${sizeName}`), properties, false, false
+          theme(`spacing.${sizeName}`), cls, properties, false, false
         )
 
         if (cls in negatives) {
           classes[`.-${className.substring(1)}`][`@media (min-width: ${maxScreen}px)`] = getProperties(
-            theme(`spacing.${sizeName}`), properties, false, true
+            theme(`spacing.${sizeName}`), cls, properties, false, true
           )
         }
       }
