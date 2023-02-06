@@ -31,6 +31,9 @@ module.exports = {
     'translate': ['translate'],
     'translate-x': ['translateX'],
     'translate-y': ['translateY'],
+    'border-spacing': ['border-spacing'],
+    'border-spacing-x': ['border-spacing'],
+    'border-spacing-y': ['border-spacing'],
   },
   borderRadiusesMap: {
     '': ['border-radius'],

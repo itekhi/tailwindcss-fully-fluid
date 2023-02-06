@@ -22,8 +22,7 @@ module.exports = {
   },
 
   plugins: [
-    require('tailwindcss-fully-fluid'),
-    // ...
+    require('tailwindcss-fully-fluid')
   ],
 }
 ```

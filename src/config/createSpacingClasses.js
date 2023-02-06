@@ -8,10 +8,11 @@ module.exports = (theme, options) => {
   const negatives = [
     'm', 'my', 'mx', 'mt', 'ml', 'mr', 'mb',
     'inset', 'inset-y', 'inset-x', 'top', 'left', 'right', 'bottom',
-    'translate', 'translate-x', 'translate-y'
+    'translate', 'translate-x', 'translate-y',
+    'border-spacing'
   ];
 
-  const getProperties = (conf, properties, clamp, negative) => {
+  const getProperties = (conf, cls, properties, clamp, negative) => {
     let pre = negative ? '-' : '';
     let val = typeof conf === 'object'
       ? clamp ? `clamp(${pre}${conf.clampMin}, ${pre}${conf.vw}, ${pre}${conf.clampMax})` : `${pre}${conf.vw}`
@@ -19,16 +20,25 @@ module.exports = (theme, options) => {
 
     return Object.fromEntries(
       properties.map(property => {
-        switch (property) {
-          case 'translateX':
-          case 'translateY':
-            return ['transform', `${property}(${val})`];
-
-          case 'translate':
-            return ['transform', `${property}(${val}, ${val})`];
+        switch (cls) {
+          case 'border-spacing':
+            return [property, `${val} ${val}`]
+          case 'border-spacing-x':
+            return [property, `0 ${val}`]
+          case 'border-spacing-y':
+            return [property, `${val} 0`]
 
           default:
-            return [property, val];
+            switch (property) {
+              case 'translateX':
+              case 'translateY':
+                return ['transform', `${property}(${val})`];
+              case 'translate':
+                return ['transform', `${property}(${val}, ${val})`];
+
+              default:
+                return [property, val];
+            }
         }
       })
     )
@@ -38,10 +48,10 @@ module.exports = (theme, options) => {
     for (let [sizeName, conf] of Object.entries(theme('fluid.spacing'))) {
       let className = `.${cls}-vw-${sizeName}`;
 
-      classes[className] = getProperties(conf, properties, options.useClamp, false)
+      classes[className] = getProperties(conf, cls, properties, options.useClamp, false)
 
       if (cls in negatives) {
-        classes[`.-${className.substring(1)}`] = getProperties(conf, properties, options.useClamp, true)
+        classes[`.-${className.substring(1)}`] = getProperties(conf, cls, properties, options.useClamp, true)
       }
 
       // TODO: These media should be out of for loop, because for each of the classes, new media is added...

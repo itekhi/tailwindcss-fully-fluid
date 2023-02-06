@@ -4,7 +4,7 @@
   "description": "A Tailwind CSS plugin that provides fluid-responsive spacings and font sizes across viewport widths.",
   "main": "src/index.js",
   "files": [
-    "src/*.js",
+    "src/**/*.js",
     "dist/"
   ],
   "license": "MIT",
