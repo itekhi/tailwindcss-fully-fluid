@@ -47,13 +47,12 @@ module.exports = ({ theme, e }, options) => {
   }
 
   for (const [cls, properties] of Object.entries(spacingsMap)) {
-    // console.log(cls, properties)
     for (const [sizeName, conf] of Object.entries(theme('fluid.spacing'))) {
       let className = '.' + e(`${cls}-vw-${sizeName}`);
 
       classes[className] = getProperties(conf, cls, properties, options.useClamp, false)
 
-      if (cls in negatives) {
+      if (negatives.includes(cls)) {
         classes[`.-${className.substring(1)}`] = getProperties(conf, cls, properties, options.useClamp, true)
       }
     }
