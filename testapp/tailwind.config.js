@@ -25,6 +25,7 @@ module.exports = {
   plugins: [
     require('../src')({
       screenMax: '1920px',
+      defaultLineHeight: null,
       // useMediaReset: true,
       // extraSizes: {
       //   spacing: [112],

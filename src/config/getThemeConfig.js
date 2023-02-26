@@ -45,7 +45,7 @@ module.exports = (name, theme, options) => {
     addSize(
       sizeName,
       getProportioned(getPixelValue(size)),
-      name === 'fontSize' ? { lineHeight: 1.25 } : {}
+      (name === 'fontSize' && options.defaultLineHeight !== null) ? { lineHeight: options.defaultLineHeight } : {}
     );
   }
 
@@ -55,7 +55,7 @@ module.exports = (name, theme, options) => {
         addSize(
           sizeName,
           getProportioned((references[name][0] + (references[name][1] * powerOfBase))),
-          name === 'fontSize' ? { lineHeight: 1.25 } : {}
+          (name === 'fontSize' && options.defaultLineHeight !== null) ? { lineHeight: options.defaultLineHeight } : {}
         )
       }
     }

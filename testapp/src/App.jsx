@@ -70,6 +70,7 @@ function App() {
         <button type="button" className="p-2 bg-zinc-200" onClick={() => setTab('font-size')}>font sizes</button>
         <button type="button" className="p-2 ml-2 bg-zinc-200" onClick={() => setTab('spacing')}>spacing</button>
         <button type="button" className="p-2 ml-2 bg-zinc-200" onClick={() => setTab('border-radius')}>border raduis</button>
+        <button type="button" className="p-2 ml-2 bg-zinc-200" onClick={() => setTab('other')}>other</button>
       </div>
 
       {tab === 'font-size' && (
@@ -102,6 +103,13 @@ function App() {
               <div className={`w-vw-16 h-vw-16 ${vwRounded} bg-zinc-500 ml-2`}></div>
             </div>
           ))}
+        </div>
+      )}
+
+      {tab === 'other' && (
+        <div>
+          <div className='w-vw-10 h-vw-10 bg-red-400'></div>
+          <div className='w-vw-10 h-vw-10 bg-red-400 -ml-vw-0.5'></div>
         </div>
       )}
     </div>

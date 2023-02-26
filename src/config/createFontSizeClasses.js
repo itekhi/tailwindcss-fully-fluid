@@ -6,10 +6,13 @@ module.exports = ({ theme, e }, options) => {
   // const { minScreen, maxScreen } = getScreens(theme, options);
 
   const getProperties = (conf, clamp) => {
-    return {
+    const props = {
       'font-size': clamp ? `clamp(${conf.clampMin}, ${conf.vw}, ${conf.clampMax})` : conf.vw,
-      'line-height': conf.lineHeight
     }
+    if (conf.lineHeight) {
+      props['line-height'] = conf.lineHeight
+    }
+    return props
   }
 
   for (let [sizeName, conf] of Object.entries(theme('fluid.fontSize'))) {

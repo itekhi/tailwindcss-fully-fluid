@@ -11,7 +11,8 @@ const defaultOptions = {
   screenMax: '2xl',
   useClamp: true, // true | false
   // useMediaReset: false, // 'min' | 'max' | true | false
-  extraSizes: {}
+  extraSizes: {},
+  defaultLineHeight: 1.25  // 1.5 | null
 }
 
 

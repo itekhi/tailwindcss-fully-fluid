@@ -75,6 +75,7 @@ For example `inset-10` from tailwind will be `inset-vw-10`.
 
 ## Configuration
 
+Example with default options:
 ```js
 {
   // ...
@@ -84,19 +85,21 @@ For example `inset-10` from tailwind will be `inset-vw-10`.
       screenMin: 'sm',
       screenMax: '2xl',
       useClamp: true,
-      extraSizes: {}
+      extraSizes: {},
+      defaultLineHeight: 1.25
     })
   ]
 }
 ```
 
-| Key           | Value                                     | Description                                  |
-| ------------- | ----------------------------------------- | -------------------------------------------- |
-| screenMin     | `'sm'` ... `'2xl'` \| `'320px'`           | Min breakpoint where to stop resizing based on viewport. Can be screen name from tailwind theme config, or any custom value. |
-| screenMax     | `'sm'` ... `'2xl'` \| `'1920px'`          | Max breakpoint where to stop resizing based on viewport. Can be screen name from tailwind theme config, or any custom value. |
-| useClamp      | `true` \| `false`                         | If `true` will use CSS's `clamp` function, otherwise all classes will just use `vw`. |
-| useMediaReset | `true` \| `false` \| `'min'` \| `'max'`   | Not supported anymore!                       |
-| extraSizes    | `Object`                                  | See [Adding more sizes](#adding-more-sizes)  |
+| Key               | Value                                     | Description                                  |
+| ----------------- | ----------------------------------------- | -------------------------------------------- |
+| screenMin         | `'sm'` ... `'2xl'` \| `'320px'`           | Min breakpoint where to stop resizing based on viewport. Can be screen name from tailwind theme config, or any custom value. |
+| screenMax         | `'sm'` ... `'2xl'` \| `'1920px'`          | Max breakpoint where to stop resizing based on viewport. Can be screen name from tailwind theme config, or any custom value. |
+| useClamp          | `true` \| `false`                         | If `true` will use CSS's `clamp` function, otherwise all classes will just use `vw`. |
+| useMediaReset     | `true` \| `false` \| `'min'` \| `'max'`   | Not supported anymore!                       |
+| extraSizes        | `Object`                                  | See [Adding more sizes](#adding-more-sizes)  |
+| defaultLineHeight | `Float` \| `null`                         | I think this options explains itself, it sets line height to all of the font-size classes. Can be null to not set line-height at all. |
 
 
 ## Customization
