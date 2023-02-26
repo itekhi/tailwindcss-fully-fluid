@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        '4.5': '1.125rem'
+      },
       fluid: {
         fontSize: {
           xxs: {
@@ -22,7 +25,7 @@ module.exports = {
   plugins: [
     require('../src')({
       screenMax: '1920px',
-      useMediaReset: true,
+      // useMediaReset: true,
       // extraSizes: {
       //   spacing: [112],
       //   fontSize: {

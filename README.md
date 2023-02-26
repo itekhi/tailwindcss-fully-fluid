@@ -84,7 +84,6 @@ For example `inset-10` from tailwind will be `inset-vw-10`.
       screenMin: 'sm',
       screenMax: '2xl',
       useClamp: true,
-      useMediaReset: false,
       extraSizes: {}
     })
   ]
@@ -96,12 +95,8 @@ For example `inset-10` from tailwind will be `inset-vw-10`.
 | screenMin     | `'sm'` ... `'2xl'` \| `'320px'`           | Min breakpoint where to stop resizing based on viewport. Can be screen name from tailwind theme config, or any custom value. |
 | screenMax     | `'sm'` ... `'2xl'` \| `'1920px'`          | Max breakpoint where to stop resizing based on viewport. Can be screen name from tailwind theme config, or any custom value. |
 | useClamp      | `true` \| `false`                         | If `true` will use CSS's `clamp` function, otherwise all classes will just use `vw`. |
-| useMediaReset | `true` \| `false` \| `'min'` \| `'max'`   | If `true`, classes will reset to tailwind's defaults before `screenMin` and after `screenMax`. `'min'` - only before `screenMin`. `'max'` - only after `screenMax`. |
-| extraSizes    | `Object`                                  | See [Adding more sizes](#adding-more-sizes) |
-
-### Notes
-
-1. Using `useMediaReset` will rapidly increase your CSS file size, because for some reason there's no way to compose `@media` classes into one in tailwind's plugin creation...
+| useMediaReset | `true` \| `false` \| `'min'` \| `'max'`   | Not supported anymore!                       |
+| extraSizes    | `Object`                                  | See [Adding more sizes](#adding-more-sizes)  |
 
 
 ## Customization
@@ -115,8 +110,6 @@ There are 3 ways you can add more sizes:
     I recommend this one, because this way you will get the normal classes + fluid sizes (plugin will calculate and add these values).
 
     You can set any values to the keys. But I recommend you to stick with tailwind's intervals of values. For example for `fontSize`, take 2 last values: `8xl: 6rem` and `9xl: 8rem`, the interval is `2rem`, so add it to the last value `8rem` and voila you have the `10xl: 10rem`.
-
-    > ⚠️ Only this way `useMediaReset` will work with custom sizes, as it gets the value from tailwind's `spacing`, `borderRadius` and `fontSize`.
 
     ```js
     {

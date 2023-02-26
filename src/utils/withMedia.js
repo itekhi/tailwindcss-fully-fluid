@@ -51,7 +51,5 @@ module.exports = (properties, { mode, defaultValue, propNames, minScreen, maxScr
     output[`@media (min-width: ${minScreen}px)`] = value
   }
 
-  console.log(output)
-
   return output;
 }

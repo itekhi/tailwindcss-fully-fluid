@@ -30,8 +30,8 @@ module.exports = (name, theme, options) => {
     return (vw * 100) / avgScreen;
   }
 
-  const addSize = (name, vw, extra={}) => {
-    output[name] = {
+  const addSize = (sizeName, vw, extra={}) => {
+    output[sizeName] = {
       clampMin: ((vw * minScreen) / 100).toFixed(0) + 'px',
       clampMax: ((vw * maxScreen) / 100).toFixed(0) + 'px',
       vw: `${vw}vw`,

@@ -10,7 +10,7 @@ const defaultOptions = {
   screenMin: 'sm',
   screenMax: '2xl',
   useClamp: true, // true | false
-  useMediaReset: 'min', // 'min' | 'max' | true | false
+  // useMediaReset: false, // 'min' | 'max' | true | false
   extraSizes: {}
 }
 
@@ -22,10 +22,10 @@ module.exports = plugin.withOptions(
 
     // TODO: add options check
 
-    return function ({ addUtilities, theme }) {
-      addUtilities(createSpacingClasses(theme, options));
-      addUtilities(createFontSizeClasses(theme, options));
-      addUtilities(createBorderRadiusClasses(theme, options));
+    return function ({ addUtilities, ...funcs }) {
+      addUtilities(createSpacingClasses(funcs, options));
+      addUtilities(createFontSizeClasses(funcs, options));
+      addUtilities(createBorderRadiusClasses(funcs, options));
     }
   },
 
