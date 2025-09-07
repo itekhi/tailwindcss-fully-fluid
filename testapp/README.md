@@ -6,8 +6,8 @@
 npm install
 ```
 
+- `react-scripts` by default clear the console, and you don't see console.logs... so to overcome this I use `concurrently`
 ```sh
 npm start
-# react-scripts by default clear the console so to overcome this I use `concurrently`
 npx concurrently npm:start
 ```

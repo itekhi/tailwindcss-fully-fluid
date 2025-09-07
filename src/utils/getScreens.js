@@ -1,9 +1,10 @@
-const getPixelValue = require("./getPixelValue");
+import getPixelValue from "./getPixelValue.js";
 
-
-module.exports = (theme, options) => {
+export default (theme, options) => {
   return {
-    minScreen: getPixelValue(theme(`screens.${options.screenMin}`) || options.screenMin) || 640,
-    maxScreen: getPixelValue(theme(`screens.${options.screenMax}`) || options.screenMax) || 1536
-  }
-}
+    minScreen:
+      getPixelValue(theme(`screens.${options.screenMin}`) || options.screenMin) || 640,
+    maxScreen:
+      getPixelValue(theme(`screens.${options.screenMax}`) || options.screenMax) || 1536,
+  };
+};

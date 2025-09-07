@@ -11,7 +11,31 @@ Install the plugin with `npm`:
 npm install -D https://github.com/itekhi/tailwindcss-fully-fluid
 ```
 
-Then add the plugin to your `tailwind.config.js` file:
+Then add the plugin to your Tailwind config file:
+
+### ESM Import (Recommended)
+
+```js
+import fluidPlugin from 'tailwindcss-fully-fluid';
+
+export default {
+  // ...
+
+  theme: {
+    // ...
+  },
+
+  plugins: [
+    fluidPlugin({
+      screenMin: 'sm',
+      screenMax: '2xl',
+      useClamp: true
+    })
+  ],
+}
+```
+
+### CommonJS Require
 
 ```js
 module.exports = {
@@ -22,7 +46,11 @@ module.exports = {
   },
 
   plugins: [
-    require('tailwindcss-fully-fluid')
+    require('tailwindcss-fully-fluid')({
+      screenMin: 'sm',
+      screenMax: '2xl',
+      useClamp: true
+    })
   ],
 }
 ```
@@ -108,9 +136,9 @@ Example with default options:
 
 There are 3 ways you can add more sizes:
 
-1. You can extend tailwind's `spacing`, `fontSize` or `borderRadius` properties.
+1. (Recommended) You can extend tailwind's `spacing`, `fontSize` or `borderRadius` properties.
 
-    I recommend this one, because this way you will get the normal classes + fluid sizes (plugin will calculate and add these values).
+    This way you will get the normal classes + fluid sizes (plugin will calculate and add these values).
 
     You can set any values to the keys. But I recommend you to stick with tailwind's intervals of values. For example for `fontSize`, take 2 last values: `8xl: 6rem` and `9xl: 8rem`, the interval is `2rem`, so add it to the last value `8rem` and voila you have the `10xl: 10rem`.
 
@@ -134,7 +162,7 @@ There are 3 ways you can add more sizes:
     }
     ```
 
-2. Another way is through plugin's `extraSizes` configuration.
+2. ~~Another way is through plugin's `extraSizes` configuration.~~ (doesn't work properly...)
 
     - For `spacing` you can just add any value you want. I recommend to add values in an interval of 8 or 16. For example the last value in [tailwind's spacing](https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale) is 96, `96 + 16 = 112`, `112 + 16 = 128` and so on.
 
@@ -152,6 +180,7 @@ There are 3 ways you can add more sizes:
         text-xs      = -2
         text-sm      = -1
         text-base    = 0   // base value
+        text-lg      = 1
         // ...
         text-8xl     = 9
         text-9xl     = 10
@@ -168,8 +197,6 @@ There are 3 ways you can add more sizes:
 
     ```js
       {
-        // ...
-
         plugins: [
           require('tailwindcss-fully-fluid')({
             extraSizes: {
@@ -177,15 +204,16 @@ There are 3 ways you can add more sizes:
                 112,
                 128
               ],
-              fontSize: {
-                'xxs': -3,
-                '10xl': 11,
-                '11xl': 12
-              },
-              borderRadius: {
-                '4xl': 6,
-                '5xl': 7
-              }
+              // NOTE: NOT SUPPORTED ANYMORE
+              // fontSize: {
+              //   'xxs': -3,
+              //   '10xl': 11,
+              //   '11xl': 12
+              // },
+              // borderRadius: {
+              //   '4xl': 6,
+              //   '5xl': 7
+              // }
             }
           })
         ]

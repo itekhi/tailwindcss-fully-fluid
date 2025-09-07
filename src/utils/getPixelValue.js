@@ -1,4 +1,4 @@
-module.exports = (rawValue, base=16) => {
+export default (rawValue, base = 16) => {
   if (Array.isArray(rawValue)) {
     rawValue = rawValue[0];
   }
@@ -7,9 +7,9 @@ module.exports = (rawValue, base=16) => {
 
   if (!val) return null;
 
-  if (rawValue.endsWith('rem')) {
+  if (rawValue.endsWith("rem")) {
     return base * val;
-  } else if (rawValue.endsWith('px')) {
+  } else if (rawValue.endsWith("px")) {
     return val;
   }
-}
+};

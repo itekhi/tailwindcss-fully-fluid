@@ -5,16 +5,16 @@ TODO: Find a way to do it easier than passing this much arguments...
 
 */
 
-module.exports = (properties, { mode, defaultValue, propNames, minScreen, maxScreen }) => {
+export default (properties, { mode, defaultValue, propNames, minScreen, maxScreen }) => {
   if (!defaultValue) return properties;
 
   const output = properties;
-  var value = {
+  let value = {
     ...Object.fromEntries(
-      propNames.map(prop => {
-        return [prop, defaultValue]
-      })
-    )
+      propNames.map((prop) => {
+        return [prop, defaultValue];
+      }),
+    ),
   };
 
   // for some reason theme('fontSize.xs') doesn't return lineHeight... when theme('fontSize') does...
@@ -43,13 +43,13 @@ module.exports = (properties, { mode, defaultValue, propNames, minScreen, maxScr
   //   }
   // }
 
-  if (['min', true].includes(mode)) {
-    output[`@media (max-width: ${maxScreen - 0.01}px)`] = value
+  if (["min", true].includes(mode)) {
+    output[`@media (max-width: ${maxScreen - 0.01}px)`] = value;
   }
 
-  if (['max', true].includes(mode)) {
-    output[`@media (min-width: ${minScreen}px)`] = value
+  if (["max", true].includes(mode)) {
+    output[`@media (min-width: ${minScreen}px)`] = value;
   }
 
   return output;
-}
+};

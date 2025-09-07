@@ -1,11 +1,11 @@
 {
   "name": "tailwindcss-fully-fluid",
-  "version": "0.6.1",
+  "version": "0.7.1",
   "description": "A Tailwind CSS plugin that provides fluid-responsive spacings and font sizes across viewport widths.",
   "main": "src/index.js",
+  "type": "module",
   "files": [
-    "src/**/*.js",
-    "dist/"
+    "src/**/*.js"
   ],
   "license": "MIT",
   "repository": "https://github.com/itekhi/tailwindcss-fully-fluid",
@@ -23,7 +23,7 @@
     "vw",
     "clamp"
   ],
-  "peerDependencies": {
-    "tailwindcss": "^3.2.4"
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

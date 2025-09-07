@@ -1,23 +1,20 @@
-const plugin = require('tailwindcss/plugin');
+import plugin from "tailwindcss/plugin.js";
 
-const getThemeConfig = require('./config/getThemeConfig');
-const createSpacingClasses = require('./config/createSpacingClasses');
-const createFontSizeClasses = require('./config/createFontSizeClasses');
-const createBorderRadiusClasses = require('./config/createBorderRadiusClasses');
-
+import getThemeConfig from "./config/getThemeConfig.js";
+import createSpacingClasses from "./config/createSpacingClasses.js";
+import createFontSizeClasses from "./config/createFontSizeClasses.js";
+import createBorderRadiusClasses from "./config/createBorderRadiusClasses.js";
 
 const defaultOptions = {
-  screenMin: 'sm',
-  screenMax: '2xl',
+  screenMin: "sm",
+  screenMax: "2xl",
   useClamp: true, // true | false
   // useMediaReset: false, // 'min' | 'max' | true | false
   extraSizes: {},
-  defaultLineHeight: 1.25  // 1.5 | null
-}
+  defaultLineHeight: 1.25, // 1.5 | null
+};
 
-
-module.exports = plugin.withOptions(
-
+export default plugin.withOptions(
   function (options) {
     options = Object.assign(defaultOptions, options);
 
@@ -27,7 +24,7 @@ module.exports = plugin.withOptions(
       addUtilities(createSpacingClasses(funcs, options));
       addUtilities(createFontSizeClasses(funcs, options));
       addUtilities(createBorderRadiusClasses(funcs, options));
-    }
+    };
   },
 
   function (options) {
@@ -36,12 +33,11 @@ module.exports = plugin.withOptions(
     return {
       theme: {
         fluid: ({ theme }) => ({
-          spacing: getThemeConfig('spacing', theme, options),
-          fontSize: getThemeConfig('fontSize', theme, options),
-          borderRadius: getThemeConfig('borderRadius', theme, options)
-        })
-      }
-    }
-  }
-
-)
+          spacing: getThemeConfig("spacing", theme, options),
+          fontSize: getThemeConfig("fontSize", theme, options),
+          borderRadius: getThemeConfig("borderRadius", theme, options),
+        }),
+      },
+    };
+  },
+);
