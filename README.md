@@ -11,56 +11,51 @@ Install the plugin with `npm`:
 npm install -D https://github.com/itekhi/tailwindcss-fully-fluid
 ```
 
-Then add the plugin to your Tailwind config file:
+### Usage
 
-### ESM Import (Recommended)
+1. First, add the plugin to your Tailwind config file:
 
-```js
-import fluidPlugin from 'tailwindcss-fully-fluid';
+    - You can import it using ESM import:
 
-export default {
-  // ...
+      ```js
+      import fluidPlugin from 'tailwindcss-fully-fluid';
 
-  theme: {
-    // ...
-  },
+      export default {
+        // ...
 
-  plugins: [
-    fluidPlugin({
-      screenMin: 'sm',
-      screenMax: '2xl',
-      useClamp: true
-    })
-  ],
-}
-```
+        theme: {
+          // ...
+        },
 
-### CommonJS Require
+        plugins: [
+          fluidPlugin({
+            screenMin: 'sm',
+            screenMax: '2xl',
+            useClamp: true
+          })
+        ],
+      }
+      ```
 
-```js
-module.exports = {
-  // ...
+    - Or using CommonJS `require`:
 
-  theme: {
-    // ...
-  },
+      ```js
+      module.exports = {
+        // ...
 
-  plugins: [
-    require('tailwindcss-fully-fluid')({
-      screenMin: 'sm',
-      screenMax: '2xl',
-      useClamp: true
-    })
-  ],
-}
-```
+        plugins: [
+          require('tailwindcss-fully-fluid')({
+            screenMin: 'sm',
+            screenMax: '2xl',
+            useClamp: true
+          })
+        ],
+      }
+      ```
 
+2. ❕❕ Then, first of all, you should set `screenMin` and `screenMax` in the plugin configuration to your min and max breakpoints. Or leave them at default, which are `sm`(640px) and `2xl`(1536px) from tailwind's configuration. These values will determine where classes will start to resize based on viewport and where to stop.
 
-## Usage
-
-First of all, you should set `screenMin` and `screenMax` in the plugin configuration to your min and max breakpoints. Or leave them at default, which are `sm`(640px) and `2xl`(1536px) from tailwind's configuration. These values will determine where classes will start to resize based on viewport and where to stop.
-
-> ⚠️ If you use `useClamp`, which is the default, you should not change these values in the middle of your project, as this will change the `clamp` values and your UI will appear smaller or bigger. (See [How it works](#how-it-works)).
+    > ⚠️ If you use `useClamp`, which is the default, you should not change these values in the middle of your project, as this will change the `clamp` values and your UI will appear smaller or bigger. (See [How it works](#how-it-works)).
 
 
 ### Examples
