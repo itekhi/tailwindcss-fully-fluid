@@ -16,6 +16,8 @@ export const spacingsMap = {
   w: ["width"],
   h: ["height"],
   size: ["width", "height"],
+  "min-w": ["min-width"],
+  "min-h": ["min-height"],
   "max-w": ["max-width"],
   "max-h": ["max-height"],
   inset: ["top", "left", "right", "bottom"],
