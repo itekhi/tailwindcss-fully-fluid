@@ -36,6 +36,20 @@ export const spacingsMap = {
   "border-spacing": ["border-spacing"],
   "border-spacing-x": ["border-spacing"],
   "border-spacing-y": ["border-spacing"],
+  "scroll-p": ["scroll-padding"],
+  "scroll-px": ["scroll-padding-left", "scroll-padding-right"],
+  "scroll-py": ["scroll-padding-top", "scroll-padding-bottom"],
+  "scroll-pt": ["scroll-padding-top"],
+  "scroll-pl": ["scroll-padding-left"],
+  "scroll-pr": ["scroll-padding-right"],
+  "scroll-pb": ["scroll-padding-bottom"],
+  "scroll-m": ["scroll-margin"],
+  "scroll-mx": ["scroll-margin-left", "scroll-margin-right"],
+  "scroll-my": ["scroll-margin-top", "scroll-margin-bottom"],
+  "scroll-mt": ["scroll-margin-top"],
+  "scroll-ml": ["scroll-margin-left"],
+  "scroll-mr": ["scroll-margin-right"],
+  "scroll-mb": ["scroll-margin-bottom"],
 };
 
 export const borderRadiusesMap = {
